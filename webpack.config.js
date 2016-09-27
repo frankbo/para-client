@@ -4,13 +4,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    devtool: 'cheap-source-map',
+    devtool: 'source-map',
     context: path.join(__dirname, './app'),
     entry: {
-        'bundle.js': './index.jsx'
+        'bundle.js': './index.tsx'
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.jsx', '.js', '.tsx', '.ts']
     },
     output: {
         path: path.join(__dirname, 'build'),
@@ -27,6 +27,8 @@ module.exports = {
                     presets: ['es2015', 'react']
                 }
             },
+            { test: /\.tsx?$/, loader: "ts-loader" },
+            { test: /\.js$/, loader: "source-map-loader" },
             { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
             { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass') }
         ]

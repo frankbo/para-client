@@ -1,8 +1,8 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
-import EmailField from './EmailField';
+import * as React from 'react';
+import { Button } from 'react-bootstrap';
+import { EmailField } from './EmailField';
 
-class App extends React.Component {
+export class App extends React.Component<{}, {}> {
   render() {
     return (
         <div className='app'>
@@ -15,4 +15,3 @@ class App extends React.Component {
   }
 }
 
-export default App
