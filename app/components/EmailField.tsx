@@ -3,8 +3,11 @@ import * as R from 'ramda';
 import { FormGroup, InputGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import { renderIf } from '../lib/renderIf'
 
-interface EmailFieldState { email: string}
-export interface EmailFieldProps { label?: string }
+interface EmailFieldState { email: string }
+export interface EmailFieldProps {
+    label?: string,
+    propagateEmail: (email: string) => any
+}
 
 export class EmailField extends React.Component<EmailFieldProps, EmailFieldState> {
     constructor(props: EmailFieldProps) {
@@ -19,9 +22,9 @@ export class EmailField extends React.Component<EmailFieldProps, EmailFieldState
         const partsNotEmpty = R.all((ele: string) => ele.length > 0)(mailParts);
 
         if (mailParts.length === 2 && partsNotEmpty) {
-            this.setState({email})
+            this.setState({email}, () => this.props.propagateEmail(email));
         } else {
-            this.setState({email: ''})
+            this.setState({email: ''});
         }
     }
 
@@ -45,7 +48,8 @@ export class EmailField extends React.Component<EmailFieldProps, EmailFieldState
         )
     }
 
-    public static defaultProps:EmailFieldProps = {
-        label: 'Mail'
+    public static defaultProps: EmailFieldProps = {
+        label: 'Mail',
+        propagateEmail: () => {}
     };
 }
