@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {FormGroup, FormControl} from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import {Button, Label} from 'react-bootstrap';
+import './SearchList.scss';
 
 interface SearchListState {
     searchTerms:Array<string>,
@@ -48,13 +49,13 @@ export class SearchList extends React.Component<SearchListProps, SearchListState
 
     renderList(searchTerms:Array<string>) {
         return (
-            <ul>
+            <ul className='tags-list'>
                 { searchTerms.map((term, i) => (
-                    <li key={i}>
-                        <span>{ term }</span>
+                    <li className='tag-item' key={i}>
                         <Button
                             bsStyle='primary'
                             onClick={ () => this.removeSearchTerm(term) }>-</Button>
+                        <Label>{ term }</Label>
                     </li>
                 )) }
             </ul>
@@ -65,17 +66,17 @@ export class SearchList extends React.Component<SearchListProps, SearchListState
         const {searchTerm} = this.state;
 
         return (
-            <div className="search-field">
+            <div className="search-list">
                 { this.renderList(this.state.searchTerms) }
-                <Button
-                    bsStyle='primary'
-                    onClick={ () => this.addSearchTerm(searchTerm) }>+</Button>
-                <FormGroup controlId="formBasicText">
+                <FormGroup className='input-tags' controlId="formBasicText">
                     <FormControl
                         type="text"
                         onChange={ this.updateSearchTerm }
                         value={ searchTerm }
                         placeholder="enter search term"/>
+                    <Button
+                        bsStyle='primary'
+                        onClick={ () => this.addSearchTerm(searchTerm) }>+</Button>
                 </FormGroup>
             </div>
         )

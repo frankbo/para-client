@@ -1,0 +1,32 @@
+.search-list {
+  display: flex;
+  flex-direction: column;
+
+  .tags-list {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+
+    .tag-item {
+      display: flex;
+      align-items: center;
+      margin-top: 3px;
+
+      .label {
+        margin-left: 7px;
+        font-weight: 600;
+        font-size: large;
+        padding: 8px;
+      }
+    }
+  }
+
+  .input-tags {
+    display: flex;
+    flex-direction: row;
+
+    .btn {
+      margin-left: 10px;
+    }
+  }
+}
