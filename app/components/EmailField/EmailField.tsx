@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as R from 'ramda';
 import { FormGroup, InputGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import { renderIf } from '../lib/renderIf'
+import { renderIf } from '../../lib/renderIf'
+import './EmailField.scss'
+
 
 interface EmailFieldState { email: string }
 export interface EmailFieldProps {

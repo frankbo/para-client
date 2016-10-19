@@ -29,8 +29,7 @@ module.exports = {
             },
             { test: /\.tsx?$/, loader: "ts-loader" },
             { test: /\.js$/, loader: "source-map-loader" },
-            { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css!postcss') },
-            { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!postcss!sass') }
+            {test: /\.scss$/, loader: 'style!css!postcss!sass'},
         ]
     },
     plugins: [

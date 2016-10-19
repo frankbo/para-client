@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import { EmailField } from '../../app/components/EmailField';
+import { EmailField } from '../../app/components/EmailField/EmailField';
 
-import { App } from '../../app/components/App';
+import { App } from '../../app/components/App/App';
 
 describe('App Component', function () {
     it('should render a form element', function () {
