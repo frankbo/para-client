@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - '6'
+before_install:
+  - npm install -g typescript typings webpack && npm link typescript
+install:
+  - npm install
+script:
+  - npm test
