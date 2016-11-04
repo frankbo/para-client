@@ -3,19 +3,22 @@ import {Button} from 'react-bootstrap';
 import {EmailField} from '../EmailField/EmailField';
 import {SearchList} from '../SearchList/SearchList';
 import './App.scss';
+import {submitTags} from "../../reducers/UserReducer";
+import {connect} from 'react-redux'
+import Dispatch = ReactRedux.Dispatch;
 
 interface SearchListState {
     searchTerms:Array<string>,
-    email:string
+    email:string,
 }
 
-export class App extends React.Component<{}, SearchListState> {
+class App extends React.Component<{dispatch: Dispatch<any>}, SearchListState> {
 
     constructor(props:any) {
         super(props);
         this.state = {
             searchTerms: [],
-            email: ''
+            email: '',
         };
 
         this.updateSearchList = this.updateSearchList.bind(this);
@@ -32,10 +35,7 @@ export class App extends React.Component<{}, SearchListState> {
         this.setState({searchTerms, email});
     }
 
-    submit(email:string, list:Array<string>) {
-        console.log(email)
-        console.log(list)
-    }
+    submit(email:string, list:Array<string>) { this.props.dispatch(submitTags(email, list)) }
 
     render() {
         const isDisabled:boolean = !(this.state.searchTerms.length > 0 && this.state.email.length > 0);
@@ -55,4 +55,6 @@ export class App extends React.Component<{}, SearchListState> {
         );
     }
 }
+
+export const ConnectedApp = connect()(App as any);
 

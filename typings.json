@@ -1,12 +1,17 @@
 {
   "globalDependencies": {
+    "bluebird": "registry:dt/bluebird#3.0.0+20160928162057",
     "chai": "registry:dt/chai#3.4.0+20160601211834",
     "chai-enzyme": "registry:dt/chai-enzyme#0.5.0+20160705230117",
     "enzyme": "registry:dt/enzyme#2.4.1+20160919072335",
+    "isomorphic-fetch": "registry:dt/isomorphic-fetch#0.0.0+20160830175641",
     "mocha": "registry:dt/mocha#2.2.5+20160720003353",
     "react": "registry:dt/react#0.14.0+20160927082313",
     "react-bootstrap": "registry:dt/react-bootstrap#0.0.0+20160806072414",
-    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040"
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
+    "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921"
   },
   "dependencies": {
     "ramda": "registry:dt/ramda#0.0.0+20160824142652"
