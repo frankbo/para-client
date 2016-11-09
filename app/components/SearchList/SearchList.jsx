@@ -1,21 +1,11 @@
-import * as React from 'react';
-import {FormGroup, FormControl} from 'react-bootstrap';
-import {Button, Label} from 'react-bootstrap';
+import React from 'react';
+import {FormGroup, FormControl, Button, Label} from 'react-bootstrap';
 import './SearchList.scss';
 
-interface SearchListState {
-    searchTerms:Array<string>,
-    searchTerm:string
-}
 
-export interface SearchListProps {
-    searchTerms?:Array<string>,
-    propagateTerms: (array: Array<string>) => any
-}
+export class SearchList extends React.Component {
 
-export class SearchList extends React.Component<SearchListProps, SearchListState> {
-
-    constructor(props: SearchListProps) {
+    constructor(props) {
         super(props);
         this.state = {
             searchTerms: props.searchTerms,
@@ -25,29 +15,29 @@ export class SearchList extends React.Component<SearchListProps, SearchListState
         this.addSearchTerm = this.addSearchTerm.bind(this);
     }
 
-    addSearchTerm(searchTerm: string) {
+    addSearchTerm(searchTerm) {
         if (searchTerm.length > 0) {
-            const searchTerms:Array<string> = this.state.searchTerms.concat(searchTerm);
+            const searchTerms = this.state.searchTerms.concat(searchTerm);
             this.setState({searchTerms, searchTerm: ''}, () => this.props.propagateTerms(searchTerms));
         } else {
             //todo show help message
         }
     }
 
-    removeSearchTerm(termToRemove: string) {
-        const searchTerms: Array<string> = this.state.searchTerms.filter( term => term !== termToRemove );
+    removeSearchTerm(termToRemove) {
+        const searchTerms = this.state.searchTerms.filter( term => term !== termToRemove );
         const { searchTerm } = this.state;
 
         this.setState( { searchTerms, searchTerm }, () => this.props.propagateTerms(searchTerms) )
     }
 
-    updateSearchTerm(event: any) {
-        const searchTerm:string = event.target.value;
+    updateSearchTerm(event) {
+        const searchTerm = event.target.value;
         const {searchTerms} = this.state;
         this.setState({searchTerms, searchTerm})
     }
 
-    renderList(searchTerms:Array<string>) {
+    renderList(searchTerms){
         return (
             <ul className='tags-list'>
                 { searchTerms.map((term, i) => (
@@ -81,7 +71,14 @@ export class SearchList extends React.Component<SearchListProps, SearchListState
             </div>
         )
     }
-
-    public static defaultProps: SearchListProps = { searchTerms:[], propagateTerms: () => {} };
-
 }
+
+SearchList.propTypes = {
+    searchTerms: React.PropTypes.array,
+    propagateTerms: React.PropTypes.func
+};
+
+SearchList.defaultProps = {
+    searchTerms: [],
+    propagateTerms: () => {}
+};

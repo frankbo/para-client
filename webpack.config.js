@@ -7,10 +7,10 @@ module.exports = {
     devtool: 'source-map',
     context: path.join(__dirname, './app'),
     entry: {
-        'bundle.js': './index.tsx'
+        'bundle.js': './index.jsx'
     },
     resolve: {
-        extensions: ['', '.jsx', '.js', '.tsx', '.ts']
+        extensions: ['', '.jsx', '.js']
     },
     output: {
         path: path.join(__dirname, 'build'),
@@ -27,7 +27,6 @@ module.exports = {
                     presets: ['es2015', 'react']
                 }
             },
-            { test: /\.tsx?$/, loader: "ts-loader" },
             { test: /\.js$/, loader: "source-map-loader" },
             {test: /\.scss$/, loader: 'style!css!postcss!sass'},
         ]
