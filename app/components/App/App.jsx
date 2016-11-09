@@ -1,17 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import {Button} from 'react-bootstrap';
 import {EmailField} from '../EmailField/EmailField';
 import {SearchList} from '../SearchList/SearchList';
+import {submitTags} from "../../redux/UserModule";
+import {connect} from 'react-redux';
 import './App.scss';
 
-interface SearchListState {
-    searchTerms:Array<string>,
-    email:string
-}
 
-export class App extends React.Component<{}, SearchListState> {
-
-    constructor(props:any) {
+export class App extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             searchTerms: [],
@@ -22,23 +19,20 @@ export class App extends React.Component<{}, SearchListState> {
         this.updateEmail = this.updateEmail.bind(this);
     }
 
-    updateSearchList(searchTerms:Array<string>) {
+    updateSearchList(searchTerms) {
         const {email} = this.state;
         this.setState({searchTerms, email});
     }
 
-    updateEmail(email:string) {
+    updateEmail(email) {
         const {searchTerms} = this.state;
         this.setState({searchTerms, email});
     }
 
-    submit(email:string, list:Array<string>) {
-        console.log(email)
-        console.log(list)
-    }
+    submit(email, list) { this.props.dispatch(submitTags(email, list)) }
 
     render() {
-        const isDisabled:boolean = !(this.state.searchTerms.length > 0 && this.state.email.length > 0);
+        const isDisabled = !(this.state.searchTerms.length > 0 && this.state.email.length > 0);
         const {email, searchTerms} = this.state;
         return (
             <div className='app'>
@@ -56,3 +50,8 @@ export class App extends React.Component<{}, SearchListState> {
     }
 }
 
+App.propTypes = {
+    dispatch: React.PropTypes.func
+};
+
+export default connect()(App);

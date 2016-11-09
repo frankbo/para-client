@@ -1,7 +1,7 @@
 --reporter dot
---watch-extensions tsx,ts
---require ts-node/register
+--watch-extensions jsx, js
+--compilers jsx:babel-core/register
 --require ./test/unit/globals.js
 --require ./test/unit/setup.js
---recursive ./test/**/*Spec.tsx
+--recursive ./test/**/*Spec.jsx
 

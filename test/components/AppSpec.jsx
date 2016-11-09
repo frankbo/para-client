@@ -1,6 +1,4 @@
-/// <reference path='../../typings/index.d.ts'/>
-
-import * as React from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import { EmailField } from '../../app/components/EmailField/EmailField';
